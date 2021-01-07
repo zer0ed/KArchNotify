@@ -1,3 +1,7 @@
+v1.3
+~~~~
+- Passive popup to notify user when KArchNotify is checking for updates
+
 v1.2
 ~~~~
 - Now more active KDE dialogs, a prompt asking to display a list of updates

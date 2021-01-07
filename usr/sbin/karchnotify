@@ -7,6 +7,9 @@
 # Import user settings
 . /etc/karchnotify.conf
 
+# Notify the user that we are checking for updates. (visual that the script is running)
+kdialog --title "KArchNotify" --passivepopup "Checking for updates.." 10 &
+
 # Grab latest package list from repos (note: you must be root)
 # You could add your user to the wheel group and setup your sudo properly
 pacman --noconfirm -Sy

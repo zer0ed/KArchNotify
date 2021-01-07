@@ -1,13 +1,43 @@
 # KArchNotify
 
 An Arch Linux utility used to notify a user when package updates are available via KDE desktop.
+This code was written to work with an older version of Arch Linux, KDE3, and bash.
 This code is no longer maintained, hasn't been looked at for ages and most definitely no longer works without modification. I've included it here for archival and sharing purposes.
+
+![active-prompt](.screenshots/active-prompt.jpg)
+
+![active-prompt](.screenshots/active-list-with-version.jpg)
 
 ## WARNING
 
 The readme below is heavily outdated, probably no longer works and asks the user to proceed with some questionable security practices. I know there are better methods for package installation and management now. Like I said this code is old, proceed at your own risk.
 
 If you made it this far and are still interested, you probably know what you're doing.
+
+## Screenshots
+
+1. [Active popup notify main](.screenshots/active-prompt.jpg)
+2. [Active popup notify with versions](.screenshots/active-list-with-version.jpg)
+3. [Active popup notify without versions](.screenshots/active-list.jpg)
+4. [Passive popup notify with versions](.screenshots/oldschool-vertical-version.jpg)
+5. [Passive popup notify without versions](.screenshots/oldschool-vertical.jpg)
+6. [Passive popup notify horizontal output](.screenshots/oldschool-horizontal.jpg)
+
+## Changelog
+
+### 1.3
+
+* Passive popup to notify user when KArchNotify is checking for updates
+
+### v1.2
+
+* Now more active KDE dialogs, a prompt asking to display a list of updates
+* Oldschool mode for those who like the old passive popup mode.
+* No dialogs unless there are updates available (silent)
+* User config file moved to /etc/karchnotify.conf  (common practice)
+* KDE startup script changed from a script to a KDE desktop file  (common practice)
+
+## Original README file (very outdated, see the warning above)
 
 ### What it is
 
@@ -45,13 +75,3 @@ A backup copy of your /etc/sudoers file was made named /etc/sudoers.karchnotify 
 * Again, user configuration can be found in /etc/karchnotify.conf
 * The karchnotify.desktop script is needed to use the sudo command on the actual script
 * The karchnotify.script script is placed in the ~/.kde/Autostart directory to be run at kde startup once the user is logged in.  ~ is the users home directory or same as [userdir] mentioned above.
-
-### Changelog
-
-#### v1.2
-
-* Now more active KDE dialogs, a prompt asking to display a list of updates
-* Oldschool mode for those who like the old passive popup mode.
-* No dialogs unless there are updates available (silent)
-* User config file moved to /etc/karchnotify.conf  (common practice)
-* KDE startup script changed from a script to a KDE desktop file  (common practice)
