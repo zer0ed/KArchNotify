@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# a small quick-n-dirty script to sudo karchnotify during kde login
-# By: Wes Brewer [nd3, Zer0] - Aug 28, 2006
-
-sudo /usr/sbin/karchnotify

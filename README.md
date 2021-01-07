@@ -28,13 +28,13 @@ At the time of KArchNotify's creation there is only one other app that I know of
 ### Setup
 
 * As root user run the included install.sh script and follow the directions.
-* You can configure user settings in the file /usr/sbin/karchnotify under the user config heading
+* You can configure user settings in the file /ect/karchnotify.conf
 * As root run "usermod -a -G updatecheck [username]" where [username] is the user you wish to allow use of karchnotify.  This needed to allow updates to the repository lists.  Any other users who you wish to allow also must be part of this updatecheck group.
-* copy kde/karchnotify.lnk to your [userdir]/.kde/Autostart directory.
+* copy kde/karchnotify.desktop to your [userdir]/.kde/Autostart directory.
 
 ### Permissions
 
-The KArchNotify install script will attempt to setup the sudo permissions file (sudoers) for you by adding the new usergroup "updatecheck" with permission to run only the /usr/sbin/karchnotify without need for a password.  This seems to be a faily secure method as even it is managed to be run abusively the script only updates the local repositories lists with the remote ones.
+The KArchNotify install script will attempt to setup the sudo permissions file (sudoers) for you by adding the new usergroup "updatecheck" with permission to run only the /usr/sbin/karchnotify without need for a password.  This seems to be a faily secure method as even if it is managed to be run abusively the script only updates the local repositories lists with the remote ones.
 
 A backup copy of your /etc/sudoers file was made named /etc/sudoers.karchnotify before changes were made.  Any changes are labeled under the "# Group added by karchnotify" heading.
 
@@ -42,6 +42,16 @@ A backup copy of your /etc/sudoers file was made named /etc/sudoers.karchnotify 
 
 * NOTE: Please remember that you must logout for your new group permissions to take affect!!
 * Screenshots of the different settings can be found in _screenshots/ directory
-* Again, user configuration is controlled by variables in the script itself (/usr/sbin/karchnotify)
-* The karchnotify.lnk script is needed to use the sudo command on the actual script
-* The karchnotify.lnk script is placed in the ~/.kde/Autostart directory to be run at kde startup once the user is logged in.  ~ is the users home directory or same as [userdir] mentioned above.
+* Again, user configuration can be found in /etc/karchnotify.conf
+* The karchnotify.desktop script is needed to use the sudo command on the actual script
+* The karchnotify.script script is placed in the ~/.kde/Autostart directory to be run at kde startup once the user is logged in.  ~ is the users home directory or same as [userdir] mentioned above.
+
+### Changelog
+
+#### v1.2
+
+* Now more active KDE dialogs, a prompt asking to display a list of updates
+* Oldschool mode for those who like the old passive popup mode.
+* No dialogs unless there are updates available (silent)
+* User config file moved to /etc/karchnotify.conf  (common practice)
+* KDE startup script changed from a script to a KDE desktop file  (common practice)

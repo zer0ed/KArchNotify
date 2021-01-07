@@ -1,19 +1,12 @@
 #!/bin/bash
 
-# A simple script to notify of new arch pacman updates via KDE kdialog.
+# A simple script to notify of new arch pacman updates via KDE kdialogs.
 # By: Wes Brewer [nd3, Zer0] - Aug 28, 2006
+# Last updated on Oct 13, 2006 (friday the 13th.. ooh spooky)
 
-################## user config ################
-# Amount of time to show the popup?
-timeout="10"
-# Show horizontal package list insted of a vertical list?  (not recommended with showver enabled)
-horz="0"
-# Display version numbers?
-showver="1"
-# Attention header
-att="Arch"
+# Import user settings
+. /etc/karchnotify.conf
 
-################# main program ################
 # Grab latest package list from repos (note: you must be root)
 # You could add your user to the wheel group and setup your sudo properly
 pacman --noconfirm -Sy
@@ -31,13 +24,20 @@ else
   paclist=`cat /tmp/paclist`
 fi
 
-
 # Get number of updates available
 numpacs=`wc -l /tmp/paclist | cut -d" " -f1`
 
-# Output to KDE (using kdialog)
-kdialog --title "$att: $numpacs new updates are available..." --passivepopup "$paclist" $timeout
+if [ "$numpacs" \> "0" ]; then    # Only display if there are updates available
+  # Oldschool display (passive popup list) or new display? 
+  if [ "$oldskwl" = "1" ]; then
+    # Output to KDE passive popup
+    kdialog --title "$att: $numpacs new updates are available..." --passivepopup "$paclist" $timeout
+  else
+    # Output to KDE list updates prompt
+    kdialog --title "KArchNotify" --yesno "$att: $numpacs new updates are available...\n List available updates?"
+    if [ $? = 0 ]; then #check if yes was selected
+      kdialog --title "KArchNotify: Updates List" --textbox /tmp/paclist 400 300  #output to KDE textbox with list of updates
+    fi
+  fi
+fi
 
-# Output to shell prompt
-#echo "$att: $numpacs new updates are available..."
-#echo "$paclist"

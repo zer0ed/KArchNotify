@@ -1,0 +1,12 @@
+v1.2
+~~~~
+- Now more active KDE dialogs, a prompt asking to display a list of updates
+- Oldschool mode for those who like the old passive popup mode.
+- No dialogs unless there are updates available (silent)
+- User config file moved to /etc/karchnotify.conf  (common practice)
+- KDE startup script changed from a script to a KDE desktop file  (common practice)
+
+
+v1.0
+~~~~~
+- 1st version

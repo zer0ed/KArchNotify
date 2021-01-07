@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=sudo /usr/sbin/karchnotify &
+Name=KArchNotify
+Type=Application
+X-KDE-StartupNotify=false

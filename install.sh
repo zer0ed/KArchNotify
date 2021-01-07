@@ -2,6 +2,7 @@
 
 # karchnotify install script
 # By: Wes Brewer [nd3, Zer0] - Aug 28, 2006
+# Last updated on Oct 13, 2006 (friday the 13th.. ooh spooky)
 
 # Is user root? If no then exit
 if ! [ "$UID" = "0" ]; then
@@ -9,8 +10,9 @@ if ! [ "$UID" = "0" ]; then
   exit
 fi
 
-# copy program to path
+# copy program to paths
 cp usr/sbin/karchnotify /usr/sbin/karchnotify
+cp etc/karchnotify.conf /etc/karchnotify.conf
 
 # add user group updatecheck
 groupadd updatecheck
@@ -32,7 +34,7 @@ echo "  to the updatecheck group, including your user account.  To do this"
 echo "  simply type \"usermod -a -G updatecheck [username]\" where [username]"
 echo "  is the user you wish to allow use of update notification."
 echo
-echo " You will also need to copy kde/karchnotify.lnk to ~/.kde/Autostart"
+echo " You will also need to copy kde/karchnotify.desktop to ~/.kde/Autostart"
 echo " so it will run once the user is logged in to kde."
 echo
 echo " You can read more in the README.TXT file if needed!"
