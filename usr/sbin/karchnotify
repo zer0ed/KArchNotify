@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# A simple script to notify of new arch pacman updates via KDE kdialog.
+# By: Wes Brewer [nd3, Zer0] - Aug 28, 2006
+
+################## user config ################
+# Amount of time to show the popup?
+timeout="10"
+# Show horizontal package list insted of a vertical list?  (not recommended with showver enabled)
+horz="0"
+# Display version numbers?
+showver="1"
+# Attention header
+att="Arch"
+
+################# main program ################
+# Grab latest package list from repos (note: you must be root)
+# You could add your user to the wheel group and setup your sudo properly
+pacman --noconfirm -Sy
+
+# Get list of updates and grab the package names only (remove ftp path, pkg.tar.gz, blank lines)
+if [ "$showver" = "1" ]; then # Show version?
+  pacman --noconfirm -Sup | sed -e 's/^.*i686\///' -e 's/.pkg.tar.gz//' -e'/^ *$/d' > /tmp/paclist
+else
+  pacman --noconfirm -Sup | sed -e 's/^.*i686\///' -e 's/-[0-9].*//' -e'/^ *$/d' > /tmp/paclist
+fi
+
+if [ "$horz" = "1" ]; then  # Horizontal display?
+  paclist=`cat /tmp/paclist | sed 's/^/  /' | tr "\n" "\t"`
+else
+  paclist=`cat /tmp/paclist`
+fi
+
+
+# Get number of updates available
+numpacs=`wc -l /tmp/paclist | cut -d" " -f1`
+
+# Output to KDE (using kdialog)
+kdialog --title "$att: $numpacs new updates are available..." --passivepopup "$paclist" $timeout
+
+# Output to shell prompt
+#echo "$att: $numpacs new updates are available..."
+#echo "$paclist"
